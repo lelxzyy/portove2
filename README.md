@@ -18,3 +18,4 @@ View your app in AI Studio: https://ai.studio/apps/122d910f-37ab-40fe-bb78-d76c3
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+# portove2
