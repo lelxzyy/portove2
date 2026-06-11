@@ -5,12 +5,12 @@ import { Award, ExternalLink, X, Calendar, Landmark, CheckCircle } from 'lucide-
 const certificates = [
   {
     id: 1,
-    title: 'Belajar Fundamental Aplikasi Web dengan Vue 3',
-    issuer: 'Dicoding Indonesia',
-    date: 'Desember 2024',
+    title: 'JUARA 2 UIUX AMICTA COMPETITION 2025',
+    issuer: 'AMIKOM Yogyakarta',
+    date: 'Mei 2025',
     credId: 'IND-9812A292-VX',
     category: 'web',
-    imageText: 'Vue 3 Certificate',
+    imageText: 'AMICTA UI/UX Award',
     detail: 'Menyelesaikan kurikulum pembelajaran pembuatan aplikasi web modern menggunakan Vue.js, Vue Router, reactive state, dan deployment.'
   },
   {
@@ -164,7 +164,7 @@ const closeModal = () => {
                   <span>Penerbit:</span> <strong>{{ selectedCert.issuer }}</strong>
                 </div>
                 <div class="badge-item">
-                  <span>Kategori:</span> <span class="tag">{{ selectedCert.category === 'web' ? 'Web Platform' : 'IoT Hardware' }}</span>
+                  <span>Kategori:</span> <span class="tag">{{ selectedCert.category === 'web' ? 'UIUX' : 'IoT Hardware' }}</span>
                 </div>
               </div>
             </div>

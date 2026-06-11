@@ -68,7 +68,7 @@ const handleSubmit = () => {
                 </div>
                 <div class="method-details">
                   <span class="m-label">GitHub</span>
-                  <a href="https://github.com/dalilaminudin" target="_blank" rel="noopener noreferrer" class="m-link">github.com/dalilaminudin</a>
+                  <a href="https://github.com/lelxzyy" target="_blank" rel="noopener noreferrer" class="m-link">github.com/lelxzyy</a>
                 </div>
               </div>
 

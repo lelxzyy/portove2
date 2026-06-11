@@ -17,7 +17,7 @@ const handleScrollTop = () => {
         </div>
 
         <div class="footer-socials">
-          <a href="https://github.com/dalilaminudin" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Github">
+          <a href="https://github.com/lelxzyy" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Github">
             <Github class="s-icon" />
           </a>
           <a href="mailto:dalilaminudin@gmail.com" class="social-btn" aria-label="Email">

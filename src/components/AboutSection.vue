@@ -4,28 +4,28 @@ import { Check, Mail, Award, BookOpen, Layers } from 'lucide-vue-next';
 const focusAreas = [
   {
     icon: BookOpen,
-    title: 'Siswa & Pembelajar',
-    description: 'Aktif mempelajari rekayasa perangkat lunak dan sistem tertanam hardware secara mendalam.'
+    title: 'Web Developer',
+    description: 'Membangun aplikasi web modern, cepat, dan responsif dengan fokus pada pengalaman pengguna.'
   },
   {
     icon: Layers,
-    title: 'Web Developer',
-    description: 'Menguasai pembuatan website modern dengan antarmuka dinamis, cepat, dan responsif.'
+    title: 'UI/UX Designer',
+    description: 'Merancang antarmuka yang bersih, mudah digunakan, dan estetis dengan prinsip desain praktis.'
   },
   {
     icon: Award,
-    title: 'IoT Enthusiast',
-    description: 'Menyambungkan dunia nyata ke internet lewat mikrokontroler (ESP32/Arduino) dengan integrasi API.'
+    title: 'IoT & Cybersecurity Enthusiast',
+    description: 'Menghubungkan perangkat fisik (ESP32/Arduino) ke cloud sambil menjaga sisi keamanan dan privasi.'
   }
 ];
 
 const technicalSkills = [
   { name: 'Vue 3 / React', pct: 90 },
+  { name: 'UI/UX Design', pct: 88 },
   { name: 'JavaScript / Node.js', pct: 85 },
   { name: 'C++ (IoT Arduino/ESP32)', pct: 80 },
   { name: 'HTML5 & CSS3', pct: 95 },
-  { name: 'Vite & Frontend Build Tools', pct: 85 },
-  { name: 'IoT Prototypes & Hardware integration', pct: 75 }
+  { name: 'Cybersecurity Concepts', pct: 70 }
 ];
 </script>
 
@@ -43,24 +43,24 @@ const technicalSkills = [
           <div class="bio-inner">
             <h3 class="bio-title">Hello World!</h3>
             <p class="bio-p">
-              Saya <strong>xdalil.a</strong> (juga dikenal sebagai <strong>lelxzyy</strong>). Saya adalah seorang siswa pengembang web dan penggiat device pintar (IoT enthusiast). Memiliki ketertarikan tinggi pada integrasi sistem software dengan hardware.
+              Saya <strong>xdalil.a</strong> (alias <strong>lelxzyy</strong>). Saya seorang Web Developer, UI/UX Designer, IoT builder, dan penggemar Cybersecurity. Saya merancang produk yang tidak hanya terlihat baik, tetapi juga aman dan dapat diandalkan.
             </p>
             <p class="bio-p">
-              Fokus saya adalah menciptakan pengalaman digital yang mulus dan interaktif. Mulai dari merancang antarmuka pixel-perfect menggunakan CSS modular, mengatur state management yang efisien, hingga memprogram ESP32 untuk mendeteksi kondisi fisik sekitar dan menampilkannya di dashboard web secara real-time.
+              Saya mengerjakan antarmuka yang ramah pengguna, prototipe perangkat pintar (ESP32/Arduino), serta praktik keamanan dasar untuk menjaga integritas data dan layanan. Beberapa project ditampilkan dari GitHub (fetch via token jika tersedia).
             </p>
             
             <div class="personal-info">
               <div class="info-item">
                 <span class="info-label">Nama Lengkap:</span>
-                <span class="info-value">xdalil.a (Aminudin Dalil)</span>
+                <span class="info-value">Dalil Aminuddin</span>
               </div>
               <div class="info-item">
-                <span class="info-label">Nama Panggilan:</span>
+                <span class="info-label">Alias:</span>
                 <span class="info-value">lelxzyy</span>
               </div>
               <div class="info-item">
                 <span class="info-label">Peran Utama:</span>
-                <span class="info-value">Web Developer & IoT Architect</span>
+                <span class="info-value">Web Developer, UI/UX & IoT, Cybersecurity Enthusiast</span>
               </div>
             </div>
           </div>

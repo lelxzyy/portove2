@@ -1,11 +1,15 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { Github, Star, GitFork, ExternalLink, Filter, Folder, Cpu, Code2 } from 'lucide-vue-next';
 
 const categories = ['All', 'Web App', 'IoT Hardware', 'Tools'];
 const selectedCategory = ref('All');
 
-const repos = [
+const repos = ref([]);
+const loading = ref(false);
+const error = ref(null);
+
+const staticRepos = [
   {
     name: 'soil-monitor-iot',
     owner: 'lelxzyy',
@@ -15,7 +19,7 @@ const repos = [
     forks: 4,
     lang: 'C++',
     techs: ['ESP32', 'WebSocket', 'Capacitive Soil Sensor', 'Node.js'],
-    link: 'https://github.com/dalilaminudin'
+    link: 'https://github.com/lelxzyy/soil-monitor-iot'
   },
   {
     name: 'smart-home-vue',
@@ -26,7 +30,7 @@ const repos = [
     forks: 8,
     lang: 'Vue 3',
     techs: ['Vue 3 Composition', 'Pinia State', 'CSS Grid', 'Vite'],
-    link: 'https://github.com/dalilaminudin'
+    link: 'https://github.com/lelxzyy/smart-home-vue'
   },
   {
     name: 'express-sensor-api',
@@ -37,18 +41,7 @@ const repos = [
     forks: 3,
     lang: 'JavaScript',
     techs: ['Express', 'NodeJS', 'SQLite', 'JWT Auth'],
-    link: 'https://github.com/dalilaminudin'
-  },
-  {
-    name: 'water-leak-alarm',
-    owner: 'lelxzyy',
-    category: 'IoT Hardware',
-    desc: 'Prototype nirkabel pendeteksi kebocoran pipa berbasis GSM SIM800L. Mengirim notifikasi SMS dan alarm buzzer ketika ada genangan air.',
-    stars: 8,
-    forks: 2,
-    lang: 'C++',
-    techs: ['Arduino', 'GSM Module', 'Water Flow Sensor', 'Buzzer'],
-    link: 'https://github.com/dalilaminudin'
+    link: 'https://github.com/lelxzyy/express-sensor-api'
   },
   {
     name: 'portfolio-website',
@@ -59,13 +52,56 @@ const repos = [
     forks: 6,
     lang: 'Vue 3',
     techs: ['Vue CSS Variables', 'Composition API', 'Lucide Icons'],
-    link: 'https://github.com/dalilaminudin'
+    link: 'https://github.com/lelxzyy/portfolio-website'
   }
 ];
 
+// Use Vite env variable VITE_GITHUB_TOKEN (set in .env) to fetch private/latest repos.
+const token = import.meta.env.VITE_GITHUB_TOKEN || '';
+
+async function fetchReposFromGithub() {
+  if (!token) {
+    repos.value = staticRepos;
+    return;
+  }
+
+  loading.value = true;
+  try {
+    const res = await fetch('https://api.github.com/user/repos?per_page=100', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json'
+      }
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const data = await res.json();
+    repos.value = data.map(r => ({
+      name: r.name,
+      owner: r.owner?.login || r.owner,
+      category: 'Web App',
+      desc: r.description || '',
+      stars: r.stargazers_count || 0,
+      forks: r.forks_count || 0,
+      lang: r.language || 'N/A',
+      techs: [],
+      link: r.html_url
+    }));
+  } catch (e) {
+    error.value = String(e.message || e);
+    repos.value = staticRepos;
+  } finally {
+    loading.value = false;
+  }
+}
+
+onMounted(() => {
+  fetchReposFromGithub();
+});
+
 const filteredRepos = computed(() => {
-  if (selectedCategory.value === 'All') return repos;
-  return repos.filter(repo => repo.category === selectedCategory.value);
+  const list = repos.value || [];
+  if (selectedCategory.value === 'All') return list;
+  return list.filter(repo => repo.category === selectedCategory.value);
 });
 </script>
 
@@ -75,6 +111,13 @@ const filteredRepos = computed(() => {
       <div class="section-header">
         <span class="section-subtitle">Koleksi Terbuka</span>
         <h2 class="section-title">GitHub Portfolio</h2>
+      </div>
+
+      <div class="git-fetch-note">
+        <small v-if="token && loading">Mengambil repository dari GitHub (token)...</small>
+        <small v-else-if="token && !loading">Menampilkan repositori dari GitHub (menggunakan token).</small>
+        <small v-else-if="error">Gagal mengambil repositori: {{ error }}</small>
+        <small v-else>Menampilkan repositori statis (tidak ada token).</small>
       </div>
 
       <!-- Filter Controls -->
