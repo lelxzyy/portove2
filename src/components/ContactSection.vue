@@ -78,7 +78,7 @@ const handleSubmit = () => {
                 </div>
                 <div class="method-details">
                   <span class="m-label">Lokasi</span>
-                  <p class="m-text">Cirebon, Jawa Barat, Indonesia</p>
+                  <p class="m-text">Sleman City, Indonesia</p>
                 </div>
               </div>
             </div>
