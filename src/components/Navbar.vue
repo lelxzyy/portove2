@@ -58,7 +58,7 @@ onUnmounted(() => {
       <!-- Title/Brand with Logo Glow -->
       <a href="#home" class="nav-brand" @click.prevent="handleScrollTo('home')">
         <Terminal class="brand-icon" />
-        <span class="brand-logo-txt">xdalil<span class="accent">.a</span></span>
+        <span class="brand-logo-txt">lelxzyy<span class="accent">.dev</span></span>
         <span class="brand-aka">/ lelxzyy</span>
       </a>
 
@@ -86,7 +86,7 @@ onUnmounted(() => {
     <!-- Mobile Drawer Links -->
     <div class="mobile-drawer" :class="{ 'drawer-open': isMobileMenuOpen }">
       <div class="drawer-header">
-        <span class="brand-logo-txt">xdalil<span class="accent">.a</span></span>
+        <span class="brand-logo-txt">lelxzyy<span class="accent">.dev</span></span>
         <button class="mobile-toggle" @click="isMobileMenuOpen = false">
           <X class="toggle-icon" />
         </button>

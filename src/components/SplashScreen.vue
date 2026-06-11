@@ -20,7 +20,7 @@ const simulateLoading = () => {
     { text: 'Loading core variables...', delay: 400 },
     { text: 'Establishing secure port handshake...', delay: 800 },
     { text: 'Optimizing web telemetry interface...', delay: 1200 },
-    { text: 'System ready: Welcome to xdalil.a portofolio!', delay: 1800 }
+    { text: 'System ready: Welcome to lelxzyy portofolio!', delay: 1800 }
   ];
 
   // Update status messages smoothly
@@ -63,7 +63,7 @@ onMounted(() => {
 
       <!-- Identity naming -->
       <div class="splash-brand">
-        <h1 class="brand-title">xdalil<span class="dot">.a</span></h1>
+        <h1 class="brand-title">lelxzyy<span class="dot">.dev</span></h1>
         <p class="brand-tagline">Student • Web Developer • IoT Enthusiast</p>
       </div>
 

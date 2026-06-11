@@ -59,7 +59,7 @@ onMounted(() => {
         </div>
 
         <h1 class="hero-title">
-          Halo, Saya <span class="gradient-text">xdalil.a</span> 
+          Halo, Saya <span class="gradient-text">Lelxzyy</span> 
         </h1>
         <div class="typing-container">
           Saya seorang <span class="typing-role">{{ currentRoleText }}</span><span class="typing-cursor">|</span>
@@ -112,7 +112,7 @@ onMounted(() => {
           <div class="avatar-body">
             <pre class="code-editor">
 <code><span class="line-syntax"><span class="keyword">const</span> <span class="variable">developer</span> = {</span>
-<span class="line-syntax">  name: <span class="string">'xdalil.a'</span>,</span>
+<span class="line-syntax">  name: <span class="string">'xdalil.a_'</span>,</span>
 <span class="line-syntax">  aka: <span class="string">'lelxzyy'</span>,</span>
 <span class="line-syntax">  learning: <span class="string">'Web & IoT'</span>,</span>
 <span class="line-syntax">  passion: <span class="string">'Creating high-quality UIs'</span>,</span>

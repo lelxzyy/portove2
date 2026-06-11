@@ -12,7 +12,7 @@ const handleScrollTop = () => {
       <div class="footer-top">
         <!-- Brand log -->
         <div class="footer-brand">
-          <span class="brand-log-txt">xdalil<span class="accent">.a</span></span>
+          <span class="brand-log-txt">Lelxzyy<span class="accent">.dev</span></span>
           <span class="brand-desc">Siswa Pengembang Web & IoT Enthusiast</span>
         </div>
 
