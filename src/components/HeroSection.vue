@@ -59,7 +59,7 @@ onMounted(() => {
         </div>
 
         <h1 class="hero-title">
-          Halo, Saya <span class="gradient-text">Lelxzyy</span> 
+          Halo, Saya <span class="gradient-text">Lelxzyyyyyyy</span> 
         </h1>
         <div class="typing-container">
           Saya seorang <span class="typing-role">{{ currentRoleText }}</span><span class="typing-cursor">|</span>
