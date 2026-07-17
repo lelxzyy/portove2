@@ -10,6 +10,7 @@ import GithubProjectSection from '@/components/GithubProjectSection.vue';
 import LiveWebSection from '@/components/LiveWebSection.vue';
 import ContactSection from '@/components/ContactSection.vue';
 import FooterSection from '@/components/FooterSection.vue';
+import AiAssistant from '@/components/AiAssistant.vue';
 
 const isSplashActive = ref(true);
 
@@ -90,6 +91,8 @@ onUnmounted(() => {
 
       <!-- 9. Sticky / Standard Footer details -->
       <FooterSection />
+
+      <AiAssistant />
     </div>
   </div>
 </template>

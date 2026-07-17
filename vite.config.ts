@@ -1,4 +1,5 @@
 import vue from '@vitejs/plugin-vue';
+import Groq from 'groq-sdk';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
 
@@ -44,10 +45,65 @@ function githubApiPlugin() {
   };
 }
 
+function aiApiPlugin() {
+  return {
+    name: 'groq-ai-api',
+    configureServer(server) {
+      server.middlewares.use('/api/ai/chat', async (req, res) => {
+        res.setHeader('Content-Type', 'application/json');
+        if (req.method !== 'POST') {
+          res.statusCode = 405;
+          res.end(JSON.stringify({ error: 'Method tidak didukung' }));
+          return;
+        }
+
+        if (!process.env.GROQ_API_KEY) {
+          res.statusCode = 500;
+          res.end(JSON.stringify({ error: 'GROQ_API_KEY belum dikonfigurasi' }));
+          return;
+        }
+
+        try {
+          let rawBody = '';
+          for await (const chunk of req) rawBody += chunk;
+          const body = JSON.parse(rawBody || '{}');
+          const messages = (Array.isArray(body.messages) ? body.messages : [])
+            .filter((message) => ['user', 'assistant'].includes(message?.role))
+            .filter((message) => typeof message.content === 'string')
+            .slice(-10)
+            .map((message) => ({ role: message.role, content: message.content.trim().slice(0, 2000) }))
+            .filter((message) => message.content);
+
+          if (!messages.length || messages.at(-1).role !== 'user') {
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: 'Pesan tidak valid' }));
+            return;
+          }
+
+          const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+          const completion = await groq.chat.completions.create({
+            model: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+            messages: [
+              { role: 'system', content: 'Kamu adalah asisten AI ramah dan ringkas di website portfolio Dalil Aminudin (lelxzyy), seorang developer web dan IoT. Jangan mengarang fakta tentang Dalil.' },
+              ...messages,
+            ],
+            temperature: 0.5,
+            max_completion_tokens: 500,
+          });
+          res.end(JSON.stringify({ message: completion.choices[0]?.message?.content || '' }));
+        } catch (error) {
+          res.statusCode = error?.status === 429 ? 429 : 500;
+          res.end(JSON.stringify({ error: res.statusCode === 429 ? 'Batas penggunaan AI sedang tercapai. Coba lagi sebentar.' : 'AI gagal merespons. Silakan coba lagi.' }));
+        }
+      });
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
   return {
-    plugins: [vue(), githubApiPlugin()],
+    plugins: [vue(), githubApiPlugin(), aiApiPlugin()],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),

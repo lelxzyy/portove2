@@ -38,8 +38,9 @@ di platform deployment. Jangan commit file `.env.local`.
 2. Di Vercel pilih **Add New > Project**, lalu import repository tersebut.
 3. Vercel akan mendeteksi Vite. Gunakan Build Command `npm run build` dan Output
    Directory `dist` (biasanya terisi otomatis).
-4. Di **Project Settings > Environment Variables**, tambahkan `GITHUB_TOKEN` dan
-   `GITHUB_USERNAME`. Aktifkan untuk Production dan Preview sesuai kebutuhan.
+4. Di **Project Settings > Environment Variables**, tambahkan `GITHUB_TOKEN`,
+   `GITHUB_USERNAME`, dan `GROQ_API_KEY`. `GROQ_MODEL` bersifat opsional. Aktifkan
+   untuk Production dan Preview sesuai kebutuhan.
 5. Deploy atau lakukan Redeploy setelah environment variable ditambahkan.
 
 Endpoint `api/github/repos.js` otomatis dijalankan sebagai Vercel Function. Token
