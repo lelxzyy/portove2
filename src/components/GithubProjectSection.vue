@@ -56,23 +56,10 @@ const staticRepos = [
   }
 ];
 
-// Use Vite env variable VITE_GITHUB_TOKEN (set in .env) to fetch private/latest repos.
-const token = import.meta.env.VITE_GITHUB_TOKEN || '';
-
 async function fetchReposFromGithub() {
-  if (!token) {
-    repos.value = staticRepos;
-    return;
-  }
-
   loading.value = true;
   try {
-    const res = await fetch('https://api.github.com/user/repos?per_page=100', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json'
-      }
-    });
+    const res = await fetch('/api/github/repos');
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const data = await res.json();
     repos.value = data.map(r => ({
@@ -114,10 +101,9 @@ const filteredRepos = computed(() => {
       </div>
 
       <div class="git-fetch-note">
-        <small v-if="token && loading">Mengambil repository dari GitHub (token)...</small>
-        <small v-else-if="token && !loading">Menampilkan repositori dari GitHub (menggunakan token).</small>
-        <small v-else-if="error">Gagal mengambil repositori: {{ error }}</small>
-        <small v-else>Menampilkan repositori statis (tidak ada token).</small>
+        <small v-if="loading">Mengambil repositori dari GitHub...</small>
+        <small v-else-if="error">Gagal mengambil repositori GitHub. Menampilkan data cadangan.</small>
+        <small v-else>Menampilkan repositori terbaru dari GitHub.</small>
       </div>
 
       <!-- Filter Controls -->
